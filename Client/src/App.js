@@ -1,23 +1,35 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import Login from './Login';
 import Register from './Register';
+import SubmitComplaint from './components/ComplaintSubmission';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
+import Home from './components/Home';
+import Headers from './components/Headers';
+import Dashboard from './components/Dashboard';
+import Error from './components/Error';
+import AdminView from './components/AdminComplaintView';
 
 const App = () => {
   return (
-    <Router>
       <div>
-        <h1>Simple Login System</h1>
+      <Headers />
         <Routes>
-          {/* Redirect from "/" to "/login" */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* Add more routes as needed */}
+          <Route path='/complaintsubmit' element={<SubmitComplaint></SubmitComplaint>}/>
+          <Route path='/adminview' element={<AdminView></AdminView>}/>
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/Home' element={<Home />} />
+          <Route path='*' element={<Error />} />
         </Routes>
       </div>
-    </Router>
   );
 };
 
 export default App;
+

@@ -1,34 +1,34 @@
-// models/User.js
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
-// Define User Schema
-const userSchema = new mongoose.Schema({
-  name: {
+// Create the User schema
+const UserSchema = new mongoose.Schema({
+  googleId: {
     type: String,
     required: true,
+    unique: true, // Google ID must be unique to avoid duplicate accounts
+  },
+  name: {
+    type: String,
   },
   email: {
     type: String,
     required: true,
     unique: true,
   },
-  password: {
+  profilePicture: {
     type: String,
-    required: true,
   },
   role: {
     type: String,
-    enum: ['student', 'teacher', 'admin'],  // Role: student, teacher, or admin
-    default: 'student',  // Default role is student
+    enum: ['teacher', 'admin','student'],
+    default: 'student', // Default role is customer
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
-// Hash the password before saving the user
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 10);
-  next();
-});
+const userdb = new mongoose.model("users",UserSchema);
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = userdb;

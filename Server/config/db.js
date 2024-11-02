@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://localhost:27017/complaint_management'; // Your database URI
-
+const mongoURI = "mongodb+srv://sathivelsurekha:rDqetLXSjI1vVAuE@cluster0.tstau.mongodb.net/MERNLoginGoogle?retryWrites=true&w=majority&appName=Cluster0";
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoURI, {

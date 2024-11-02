@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom'; // Import useNavigate and Link
+import { useNavigate, Link } from 'react-router-dom'; 
 import axios from 'axios';
-import './Login.css'
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Use navigate for redirection after login
+  const navigate = useNavigate(); 
 
   const handleLogin = async () => {
     try {
@@ -26,25 +26,23 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-<form class="form">
-  <span class="input-span">
-    <label for="email" class="label">Email</label>
-    <input type="email" name="email" id="email"  value={email}
-        onChange={(e) => setEmail(e.target.value)}  placeholder="Email"
-  /></span>
-  <span class="input-span">
-    <label for="password" class="label" >Password</label>
-    <input type="password" name="password" id="password" placeholder="Password"
+      <div className="container">
+      <p className="title">Welcome back</p>
+       <form className="form">
+  <input type="email" className="input" value={email}
+        onChange={(e) => setEmail(e.target.value)}  placeholder="Email" autoComplete="email" />
+  <input type="password" className="input" placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
-  /></span>
-  <span class="span"><a href="#">Forgot password?</a></span>
-  <input class="submit" type="submit" value="Log in" onClick={handleLogin} />
-  <span class="span">Don't have an account? <Link to="/register">Sign up</Link></span>
+        onChange={(e) => setPassword(e.target.value)} autoComplete="current-password" />
+  <p className="page-link" >
+    <span><Link to="/forgot-password">Forgot Password?</Link></span>
+  </p>
+  <button onClick={handleLogin} className="form-btn">Log in</button>
+<p>
+  Don't have an account?<span><Link to="/register">Sign up</Link></span>
+</p>
 </form>
-    </div>
+</div>
   );
 };
 
